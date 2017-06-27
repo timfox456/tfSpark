@@ -1,2 +1,8 @@
 # tfSpark
-Tensorflow Spark Integration Example
+
+Tensorflow and Spark: Better Together
+
+## Introduction
+
+Tensorflow and Spark: two powrerful tools.
+

@@ -1,3 +1,5 @@
+package com.createksolutions.tfSpark
+
 import org.tensorflow.{Graph, Session, Tensor}
 
 import scala.collection.JavaConverters._

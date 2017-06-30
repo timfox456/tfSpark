@@ -1,3 +1,5 @@
+package com.createksolutions.tfSpark
+
 import org.tensorflow.{Graph, Session, Tensor}
 
 import scala.collection.JavaConverters._
@@ -15,7 +17,8 @@ class HelloTFTest extends FlatSpec {
 
     val session: Session = new Session(graph)
     val output = session.runner().fetch("MyConst").run().get(0)
-    println(new String(output.bytesValue(), "UTF-8"))
+    val outputString = new String(output.bytesValue(), "UTF-8")
+    assert(outputString == "Hello Tensorflow!")
   
 }
 

@@ -13,3 +13,18 @@ Cloud ML Engine, which allows parallel training or deployment of tensorflow mode
 or non-Google infrastructure are not able to use Cloud ML Engine as it is not open-source.
 
 
+## Scala and Tensorflow on Spark
+
+I've included a couple of scala examples:
+
+  * HelloTF : Hello World kind of stuff
+  * LabeledImage : From the TF Java documentation
+
+## Why Scala?
+
+Why am I using Scala and not PySpark?  Well, first Spark is native to Scala; Python only exists as (much
+slower) interface.   I wanted to use native Scala.
+
+Then why not Java?  Well, Scala is much better than Java as far as Spark goes.  One can easily mix and 
+match java classes with the scala if you prefer ajva.
+

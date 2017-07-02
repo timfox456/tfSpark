@@ -21,7 +21,7 @@ object LabelImage {
     val url =
       "https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip"
     s.println(
-      "Java program that uses a pre-trained Inception model (http://arxiv.org/abs/1512.00567)")
+      "Scala program that uses a pre-trained Inception model (http://arxiv.org/abs/1512.00567)")
     s.println("to label JPEG images.")
     s.println("TensorFlow version: " + TensorFlow.version())
     s.println()

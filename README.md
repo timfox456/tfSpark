@@ -4,7 +4,7 @@ Tensorflow and Spark: Better Together
 
 ## Introduction
 
-Tensorflow and Spark: two powrerful tools.
+Tensorflow and Spark: two powerful tools.
 
 Tensorflow and Spark have a lot in common. Both are designed to be distributed engines for processing data.
 

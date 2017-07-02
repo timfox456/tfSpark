@@ -32,12 +32,12 @@ class GraphBuilder(g: Graph) {
   //  for (t <- managed(Tensor.create(value)))
 
   def constant(name: String, value: Any): Output = {
-      val t = Tensor.create(value)
-      g.opBuilder("Const", name)
-        .setAttr("dtype", t.dataType())
-        .setAttr("value", t)
-        .build()
-        .output(0)
+    val t = Tensor.create(value)
+    g.opBuilder("Const", name)
+      .setAttr("dtype", t.dataType())
+      .setAttr("value", t)
+      .build()
+      .output(0)
   }
 
   private def binaryOp(`type`: String, in1: Output, in2: Output): Output =

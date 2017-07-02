@@ -47,7 +47,7 @@ object LabelImage {
       Paths.get(modelDir, "imagenet_comp_graph_label_strings.txt"))
     val imageBytes: Array[Byte] = readAllBytesOrExit(Paths.get(imageFile))
 
-    val image = constructAndExecuteGraphToNormalizeImage(imageBytes) 
+    val image = constructAndExecuteGraphToNormalizeImage(imageBytes)
     val labelProbabilities: Array[Float] =
       executeInceptionGraph(graphDef, image)
     val bestLabelIdx: Int = maxIndex(labelProbabilities)
@@ -56,7 +56,7 @@ object LabelImage {
   }
 
   private def constructAndExecuteGraphToNormalizeImage(
-      imageBytes: Array[Byte]): Tensor =  { 
+      imageBytes: Array[Byte]): Tensor = {
     val g = new Graph()
     val b: GraphBuilder = new GraphBuilder(g)
     // Some constants specific to the pre-trained model at:
@@ -104,20 +104,21 @@ object LabelImage {
 
   private def executeInceptionGraph(graphDef: Array[Byte],
                                     image: Tensor): Array[Float] = {
-      val g = new Graph();
-      g.importGraphDef(graphDef)
-      val s = new Session(g)
-      val result : Tensor = s.runner().feed("input", image).fetch("output").run().get(0)
-      val rshape: Array[Long] = result.shape()
-      if (result.numDimensions() != 2 || rshape(0) != 1) {
-        throw new RuntimeException(
-          String.format(
-            "Expected model to produce a [1 N] shaped tensor where N is the number of labels, instead it produced one with shape %s",
-            rshape.mkString(", ")))
-      }
-      val nlabels: Int = rshape(1).toInt
-      result.copyTo(Array.ofDim[Float](1, nlabels))(0)
+    val g = new Graph();
+    g.importGraphDef(graphDef)
+    val s = new Session(g)
+    val result: Tensor =
+      s.runner().feed("input", image).fetch("output").run().get(0)
+    val rshape: Array[Long] = result.shape()
+    if (result.numDimensions() != 2 || rshape(0) != 1) {
+      throw new RuntimeException(
+        String.format(
+          "Expected model to produce a [1 N] shaped tensor where N is the number of labels, instead it produced one with shape %s",
+          rshape.mkString(", ")))
     }
+    val nlabels: Int = rshape(1).toInt
+    result.copyTo(Array.ofDim[Float](1, nlabels))(0)
+  }
 
   private def maxIndex(probabilities: Array[Float]): Int = {
     var best: Int = 0
